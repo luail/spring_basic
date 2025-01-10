@@ -128,7 +128,7 @@ public class HelloController {
         return "OK";
     }
 
-//    case3. js를 활용한 form데이터 전송(text만)
+//    case3. js를 활용한 form데이터 전송(text만) new FormData방식
     @GetMapping("/axios-form-view")
     public String axiosFormView() {
         return "axiosFormView";
@@ -221,12 +221,20 @@ public class HelloController {
     @PostMapping("/axios-json-file-view")
     @ResponseBody
     public String axiosJsonFileViewPost(
-            @RequestParam(value = "hello")String helloString,
-            @RequestParam(value = "photo")MultipartFile photo
+//            @RequestParam(value = "hello")String helloString,
+//            @RequestParam(value = "photo")MultipartFile photo
+//            RequestPart는 json과 file 함께 처리할 때 많이 사용.
+            @RequestPart("hello")Hello hello,
+            @RequestPart("photo") MultipartFile photo
     ) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        Hello h1 = objectMapper.readValue(helloString, Hello.class);
-        System.out.println(h1);
+////        RequestParam으로 받을 때
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        Hello h1 = objectMapper.readValue(helloString, Hello.class);
+//        System.out.println(h1);
+//        System.out.println(photo.getOriginalFilename());
+
+//        RequestPart로 받을 때
+        System.out.println(hello);
         System.out.println(photo.getOriginalFilename());
         return "OK";
     }
