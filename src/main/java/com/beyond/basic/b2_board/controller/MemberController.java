@@ -26,7 +26,7 @@ public class MemberController {
     }
 
 //    회원목록조회
-    @GetMapping("list")
+    @GetMapping("/list")
     public String memberList(Model model) {
         List<MemberListRes> memberListResList = memberService.findAll();
         model.addAttribute("memberList", memberListResList);
