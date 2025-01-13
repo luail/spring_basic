@@ -238,4 +238,5 @@ public class HelloController {
         System.out.println(photo.getOriginalFilename());
         return "OK";
     }
+
 }
