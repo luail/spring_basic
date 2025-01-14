@@ -33,6 +33,7 @@ public class MemberController {
 //    }
 //
 //    의존성 주입(DI) 방법3. RequiredArgs 어노테이션 사용방법.
+//    RequireArgs 어노테이션은 class위쪽에서 사용한다.
 //    RequiresArgs : 반드시 초기화 되어야 하는 필드(final키워드 등)를 대상으로 생성자를 자동으로 만들어주는 어노테이션.
 //
     private final MemberService memberService;
@@ -62,6 +63,9 @@ public class MemberController {
         } catch (NoSuchElementException e) {
             model.addAttribute("errorMessage", e.getMessage());
             return "/member/member-error";
+        } catch (RuntimeException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "/member/member-error";
         }
 
     }
@@ -83,7 +87,5 @@ public class MemberController {
             model.addAttribute("errorMessage", e.getMessage());
             return "/member/member-error";
         }
-
-
     }
 }
