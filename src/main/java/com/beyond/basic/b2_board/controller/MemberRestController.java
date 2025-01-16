@@ -47,4 +47,10 @@ public class MemberRestController {
         memberService.MemberUpdatePw(memberUpdateDto);
         return "OK";
     }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteMember(@PathVariable Long id) {
+        memberService.delete(id);
+        return "OK";
+    }
 }

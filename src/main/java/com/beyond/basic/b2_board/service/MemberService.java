@@ -62,4 +62,10 @@ public class MemberService {
 //        기존객체를 조회후에 다시 save할 경우에는 insert가 아니라 update 쿼리 실행
         memberRepository.save(member);
     }
+
+    public void delete(Long id) {
+//        memberRepository.deleteById(id);
+        Member member = memberRepository.findById(id).orElseThrow(()->new EntityNotFoundException("not found"));
+        memberRepository.delete(member);
+    }
 }
