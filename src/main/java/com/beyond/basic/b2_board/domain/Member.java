@@ -28,6 +28,8 @@ public class Member {
     private String email;
 //    @Column(name = "pw") 이렇게 할수는 있으나 컬럼명과 변수명을 일치시키는것이 개발의 혼선을 줄일 수 있음.
     private String password;
+
+//    java에서 캐멀케이스 사용시 DB에는 created_time으로 컬럼이 변환된다.
     @CreationTimestamp
     private LocalDateTime createdTime;
     @UpdateTimestamp
