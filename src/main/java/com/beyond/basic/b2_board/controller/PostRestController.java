@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,8 @@ public class PostRestController {
 
 //    등록
     @PostMapping("/create")
-    public ResponseEntity<?> createPost(@RequestBody PostCreateDto postCreateDto) {
+//    valid와 NotEmpty 등 검증 어노테이션이 한쌍.
+    public ResponseEntity<?> createPost(@Valid @RequestBody PostCreateDto postCreateDto) {
         postService.save(postCreateDto);
         return new ResponseEntity<>(new CommonDto(HttpStatus.CREATED.value(), "post create successful", "OK"), HttpStatus.CREATED);
     }
