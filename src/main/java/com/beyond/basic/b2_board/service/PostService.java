@@ -20,9 +20,17 @@ public class PostService {
     private final PostRepository postRepository;
     private final MemberRepository memberRepository;
 
-    public void save(PostCreateDto postCreateDto) throws EntityNotFoundException {
+    public void save(PostCreateDto postCreateDto) throws EntityNotFoundException, IllegalArgumentException {
         if (memberRepository.findById(postCreateDto.getMemberId()).isEmpty()) {
             throw new EntityNotFoundException("존재하지 않는 ID입니다.");
+        }
+
+        if (postCreateDto.getTitle().isEmpty()) {
+            throw new IllegalArgumentException("제목을 입력해주세요.");
+        }
+
+        if (postCreateDto.getContents().isEmpty()) {
+            throw new IllegalArgumentException("내용을 입력해주세요.");
         }
         Post post = postCreateDto.toEntity();
         postRepository.save(post);
